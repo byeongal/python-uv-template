@@ -1,0 +1,24 @@
+name: Ruff
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+concurrency:
+  group: ruff-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ruff format (check)
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: format --check .
+      - name: Ruff lint
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: check --output-format=github --force-exclude .
