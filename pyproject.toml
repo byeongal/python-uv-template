@@ -1,0 +1,40 @@
+[project]
+name = "python-uv-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "ruff>=0.13.1",
+]
+
+[tool.ruff]
+# 프로젝트에 맞는 파이썬 버전
+target-version = "py312"
+# 코드 길이 제한, 예전에는 88을 많이 사용하였지만, 요즘은 모니터가 좋아서 늘려도 괜찮음
+line-length = 119
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/rules/
+# 무시할 코드 규칙
+ignore = ["C901", "E501", "E741", "F402", "F823" ]
+# 사용할 코드 규칙
+select = ["B", "C", "E", "F", "I", "W"]
+
+[tool.ruff.lint.isort]
+# import 모듈 사이 띄어쓰기 2칸
+lines-after-imports = 2
+
+[tool.ruff.format]
+# 문자열 표기 방식
+quote-style = "double"
+# 들여쓰기 방식
+indent-style = "space"
+# 마지막 콤마 생략 여부
+skip-magic-trailing-comma = false
+# 줄 바꿈 방식
+line-ending = "auto"
